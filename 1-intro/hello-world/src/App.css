@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+}
+
+
+.app{
+    background-color: aqua;
+    
+}
+
+.app h1, p{
+    margin: 0 auto;
+    text-align: center;
+}
+
