@@ -27,7 +27,7 @@ export const useAuthentication = () => {
     }
 
 
-    const createUser = async ()=>{
+    const createUser = async (data)=>{
 
         checkIfIsCancelled();
 
