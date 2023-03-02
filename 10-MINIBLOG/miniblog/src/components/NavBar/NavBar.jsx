@@ -6,6 +6,8 @@ import { useAuthValue } from "../../context/AuthContext";
 export const NavBar = () => {
     
   const { user } = useAuthValue();
+  console.log(user? "O usuário está chegando no NavBar" : "Não há usuário no NavBar")
+  console.log( user )
 
   return (
     <nav className={styles.navbar}>
