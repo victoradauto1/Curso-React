@@ -6,8 +6,8 @@ import { useAuthValue } from "../../context/AuthContext";
 export const NavBar = () => {
     
   const { user } = useAuthValue();
-  console.log(user? "O usuário está chegando no NavBar" : "Não há usuário no NavBar")
-  console.log( user )
+  const { logout } = useAuthentication();
+  // const user = true
 
   return (
     <nav className={styles.navbar}>
@@ -67,6 +67,11 @@ export const NavBar = () => {
             Sobre
           </NavLink>
         </li>
+        {user && (
+          <li>
+            <button onClick={logout}>Sair</button>
+          </li>
+        )}
       </ul>
     </nav>
   );
