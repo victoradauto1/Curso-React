@@ -1,6 +1,6 @@
 import { useEffect, useState, useReducer } from "react";
 import { db } from '../firebase/config'
-import { collection, addDoc, creatAt, Timestamp, doc } from "firebase/firestore";
+import { collection, addDoc,  Timestamp, doc } from "firebase/firestore";
 
 const initialState ={
 
@@ -8,6 +8,9 @@ const initialState ={
     error: null
 
 }
+
+
+
 
 const insertReducer = (state, action)=>{
 
@@ -25,7 +28,7 @@ const insertReducer = (state, action)=>{
 
 }
 
-export const useInsertDocument = (docCollection) =>{
+export const useInsertDocuments = (docCollection) =>{
 
         const [response, dispatch] = useReducer(insertReducer, initialState)
 
@@ -71,6 +74,8 @@ export const useInsertDocument = (docCollection) =>{
                 
             }
         }
+       
 
-        return(insertDocument, response)
+        return{insertDocument, response}
 }
+
