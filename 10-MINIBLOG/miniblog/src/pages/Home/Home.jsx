@@ -1,15 +1,19 @@
 import styles from "./Home.module.css"
 import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
+import { useFetchDocuments } from "../../hooks/useFecthDocuments";
+import { PostDetails } from "../../components/PostDetails/PostDetails";
 
 
 export const Home = () => {
   const [query, setQuery] = useState("");
-  const [posts] = useState([ ])
+  const { documents: posts, loading} = useFetchDocuments()
 
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+
+  console.log("Sobre os posts temos - ", posts)
   return (
     <div className={styles.home}>
       <h1>Veja nossos posts mais recentes</h1>
@@ -23,7 +27,10 @@ export const Home = () => {
         <button className="btn btn-dark">Pesquisar</button>
       </form>
       <div>
-        <h1>Posts...</h1>
+        {loading && <p>Carregando ...</p>}
+        {posts && posts.map((post)=>(
+          <PostDetails key={post.id} post={post}/>
+        ))}
         {posts && posts.length === 0 &&(
           <div className={styles.noposts}>
             <p>Não foram encontrados Posts</p>
