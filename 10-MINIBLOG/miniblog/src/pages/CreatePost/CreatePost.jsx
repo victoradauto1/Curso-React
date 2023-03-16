@@ -2,7 +2,7 @@ import styles from "./CreatePost.module.css";
 import { useNavigate } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 import { useState } from "react";
-import { useInsertDocuments } from "../../hooks/useInsertDocuments";
+import { useInsertDocument } from "../../hooks/useInsertDocument";
 
 export const CreatePost = () => {
   const [title, setTitle] = useState("");
@@ -13,7 +13,7 @@ export const CreatePost = () => {
 
   const { user } = useAuthValue();
 
-  const { insertDocument, response } = useInsertDocuments("posts")
+  const { insertDocument, response } = useInsertDocument("posts")
 
   const navigate = useNavigate()
 
