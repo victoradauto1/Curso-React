@@ -1,19 +1,18 @@
 import styles from "./Home.module.css"
 import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
-import { useFetchDocuments } from "../../hooks/useFecthDocuments";
+import { useFetchDocument } from '../../hooks/useFetchDocument'
 import { PostDetails } from "../../components/PostDetails/PostDetails";
 
 
 export const Home = () => {
   const [query, setQuery] = useState("");
-  const { documents: posts, loading} = useFetchDocuments()
+  const { documents: posts, loading} = useFetchDocument()
 
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
-  console.log("Sobre os posts temos - ", posts)
   return (
     <div className={styles.home}>
       <h1>Veja nossos posts mais recentes</h1>

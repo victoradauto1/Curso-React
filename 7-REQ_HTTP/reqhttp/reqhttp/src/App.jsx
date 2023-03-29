@@ -47,6 +47,7 @@ function App() {
 
     FetchData();
   }
+  
   return (
     <div className="App">
       <h1>Requisições</h1>
