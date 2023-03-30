@@ -23,6 +23,8 @@ const insertReducer = (state, action) => {
 export const useInsertDocument = (docCollection) => {
   const [response, dispatch] = useReducer(insertReducer, initialState);
 
+  console.log("o docCollection é" + docCollection )
+
   // deal with memory leak
   const [cancelled, setCancelled] = useState(false);
 
@@ -32,16 +34,23 @@ export const useInsertDocument = (docCollection) => {
     }
   };
 
+  console.log("O docCollection no useinsertDocumnet é:", docCollection);
+
   const insertDocument = async (document) => {
     checkCancelBeforeDispatch({ type: "LOADING" });
+    
 
     try {
       const newDocument = { ...document, createdAt: Timestamp.now() };
+      
 
       const insertedDocument = await addDoc(
         collection(db, docCollection),
         newDocument
       );
+
+      console.log("docCollection dentro da função insertDocument:", docCollection)
+     
 
       checkCancelBeforeDispatch({
         type: "INSERTED_DOC",
@@ -58,3 +67,4 @@ export const useInsertDocument = (docCollection) => {
 
   return { insertDocument, response };
 };
+

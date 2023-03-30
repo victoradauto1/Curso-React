@@ -14,41 +14,39 @@ export const CreatePost = () => {
   const { user } = useAuthValue();
 
   const { insertDocument, response } = useInsertDocument("posts")
+ 
 
   const navigate = useNavigate()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormError("")
-
+    setFormError("");
+  
     try {
-      new URL(image)
+      new URL(image);
     } catch (error) {
-      setFormError("A imagem precisa ser uma URL.")
+      setFormError("A imagem precisa ser uma URL.");
     }
-
-    const tagsArray = tags.split(",").map((tag)=>tag.trim().toLowerCase())
-
-      if (!title || !image || !body || !tags) {
-        setFormError("Por favor, preencha todos os campos!")
-      }
-
-    if (formError) return;
-
-    insertDocument({
+  
+    const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase());
+  
+    if (!title || !image || !body || !tags) {
+      setFormError("Por favor, preencha todos os campos!");
+      return;
+    }
+  
+    await insertDocument({
       title,
       image,
       body,
       tagsArray,
       uid: user.uid,
-      createdBy: user.displayName
-    })
-
-    navigate("/")
+      createdBy: user.displayName,
+    });
   
-
-
+    navigate("/");
   };
+  
 
   return (
     <div className={styles.create_post}>
